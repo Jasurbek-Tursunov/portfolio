@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<article class="active" data-page="blog">
+
+    <header>
+      <div class="article-title"></div>
+      <h2 class="h2 article-title">{{ blog.title }}</h2>
+    </header>
+
+    <section class="about-text">
+        <time>{{ blog.created_at }}</time>
+        <p>{{ blog.short_text }}</p>
+    </section>
+
+    <figure class="project-img">
+        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+    </figure>
+    
+    <section class="about-text">{{ blog.description | safe }}</section>
+
+</article>
+
+{% endblock content %}
