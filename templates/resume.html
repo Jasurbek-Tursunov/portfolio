@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- #RESUME -->
+    <article class="resume active" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        {% for category in resume_categories %}
+            <section class="timeline">
+              <div class="title-wrapper">
+                <div class="icon-box">
+                  <ion-icon name="book-outline"></ion-icon>
+                </div>
+                <h3 class="h3">{{ category.title }}</h3>
+              </div>
+
+              <ol class="timeline-list">{% for element in resume %}
+                {% if element.category == category %}
+                <li class="timeline-item">
+
+                  <h4 class="h4 timeline-item-title">{{ element.short_text }}</h4>
+
+                  <span>{{ element.period }}</span>
+
+                  <p class="timeline-text">
+                      {{ element.description }}
+                  </p>
+
+                </li>
+                  {% endif %}
+                {% endfor %}
+              </ol>
+
+            </section>
+        {% endfor %}
+        {% if skills %}
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+            {% for skill in skills %}
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">{{ skill.title }}</h5>
+                <data value="{{ skill.percent }}">{{ skill.percent }}%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: {{ skill.percent }}%;"></div>
+              </div>
+
+            </li>
+            {% endfor %}
+          </ul>
+
+        </section>
+        {% endif %}
+
+    </article>
+
+{% endblock content %}

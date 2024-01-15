@@ -2,24 +2,47 @@
 {% load static %}
 {% block content %}
 
-<article class="active" data-page="blog">
+  <!-- #BLOG -->
+  <article class="blog active" data-page="blog">
 
     <header>
-      <div class="article-title"></div>
-      <h2 class="h2 article-title">{{ blog.title }}</h2>
+      <h2 class="h2 article-title">Blog</h2>
     </header>
 
-    <section class="about-text">
-        <time>{{ blog.created_at }}</time>
-        <p>{{ blog.short_text }}</p>
+    <section class="blog-posts">
+
+      <ul class="blog-posts-list">
+        {% for blog in blogs %}
+        <li class="blog-post-item">
+          <a href="/blog/{{ blog.slug }}">
+
+            <figure class="blog-banner-box">
+              <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+            </figure>
+
+            <div class="blog-content">
+
+              <div class="blog-meta">
+                <p class="blog-category">{{ blog.category }}</p>
+
+                <span class="dot"></span>
+
+                <time datetime="{{ blog.created_at }}">{{ blog.created_at }}</time>
+              </div>
+
+              <h3 class="h3 blog-item-title">{{ blog.title }}</h3>
+              <p class="blog-text">{{ blog.short_text }}</p>
+
+            </div>
+
+          </a>
+        </li>
+        {% endfor %}
+
+      </ul>
+
     </section>
 
-    <figure class="project-img">
-        <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
-    </figure>
-    
-    <section class="about-text">{{ blog.description | safe }}</section>
-
-</article>
+  </article>
 
 {% endblock content %}
