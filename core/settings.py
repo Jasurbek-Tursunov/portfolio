@@ -31,6 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", 'django-insecure-otxmf=3f)vfz(6t@3w3-@
 DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1").split(" ")
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS", "127.0.0.1").split(" ")
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", os.environ.get("PROTOCOL", "http"))
 SESSION_COOKIE_SECURE = True
