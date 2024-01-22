@@ -15,11 +15,7 @@ class HomeView(View):
         skills = Skill.objects.all()
         testimonials = Message.objects.filter(is_checked=True)
         clients = Client.objects.all()
-        # resume_categories = ResumeCategory.objects.all()
-        # resume = Resume.objects.all()
-        # categories = Category.objects.all()
-        # projects = Project.objects.all()
-        # blogs = Blog.objects.all()
+
         return render(
             request,
             "index.html",
@@ -28,12 +24,7 @@ class HomeView(View):
                 "socials": socials,
                 "skills": skills,
                 "testimonials": testimonials,
-                "clients": clients,
-                # "resume_categories": resume_categories,
-                # "resume": resume,
-                # "categories": categories,
-                # "projects": projects,
-                # "blogs": blogs
+                "clients": clients
             }
         )
 
@@ -150,8 +141,8 @@ class BlogDetailView(View):
             raise Http404
 
 
-class ReceiveMessage(View):
-    """ Receive message from Clients"""
+class MessageView(View):
+    """ Message from Clients"""
 
     def post(self, request):
         form = MessagesForm(request.POST)
